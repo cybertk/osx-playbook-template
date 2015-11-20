@@ -1,0 +1,11 @@
+---
+# Homebrew settings
+homebrew:
+  # Add Homebrew Formulae here
+  formulae:
+  - git
+  - wget
+  # Add Homebrew Taps here
+  taps:
+  # Add Homebrew Casks here
+  casks:

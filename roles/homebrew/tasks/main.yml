@@ -1,0 +1,36 @@
+---
+# Followed homebrew official guide: https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Installation.md
+# This role ensure Homebrew and Homebrew-Cask is installed
+
+- name: Ensure /usr/local has correct permissions.
+  file:
+    path: /usr/local
+    group: admin
+    mode: 0775
+    state: directory
+  sudo: yes
+
+# Shallow clone of homebrew to /usr/local
+- name: Ensure homebrew is installed
+  git:
+    repo: git://github.com/Homebrew/homebrew.git
+    version: master
+    dest: /usr/local
+    update: no
+    accept_hostkey: yes
+    depth: 1
+
+- name: Ensure proper permissions on homebrew's bin dirs.
+  file:
+    path: /usr/local/bin
+    group: admin
+    mode: 0775
+    state: directory
+    recurse: true
+  sudo: yes
+
+# Homebrew Cask
+- name: Ensure Homebrew Cask tap is installed.
+  homebrew_tap: "tap=caskroom/cask state=present"
+- name: Ensure Homebrew Cask formula is installed.
+  homebrew: "name=brew-cask state=present"

@@ -1,0 +1,20 @@
+---
+- hosts: osx-template
+
+  vars_files:
+  - vars/main.yml
+
+  roles:
+  - homebrew
+
+  tasks:
+
+  # Homebrew Formulae
+  - name: Ensure configured homebrew formulae are installed.
+    homebrew: "name={{ item }} state=present"
+    with_items: homebrew.formulae
+
+  # Homebrew Casks
+  - name: Ensure configured homebrew casks are installed.
+    homebrew_cask: "name={{ item }} state=present"
+    with_items: homebrew.casks
