@@ -10,6 +10,9 @@
   tasks:
 
   # Homebrew Taps
+  - name: Ensure configured homebrew taps are installed.
+    homebrew_tap: "tap={{ item }} state=present"
+    with_items: homebrew.taps
   - name: Ensure configured homebrew taps outside Github are installed.
     shell: /usr/local/bin/brew tap {{ item.name }} {{ item.url }}
     with_items: homebrew.taps_out_of_github
