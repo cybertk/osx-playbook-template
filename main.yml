@@ -9,6 +9,10 @@
 
   tasks:
 
+  # Update homebrew
+  - name: Ensure homebrew formulae and casks are updated
+    homebrew: update_homebrew=yes
+
   # Homebrew Taps
   - name: Ensure configured homebrew taps are installed.
     homebrew_tap: "tap={{ item }} state=present"
