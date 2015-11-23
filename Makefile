@@ -4,4 +4,4 @@ ping:
 	ansible all -m ping -i inventory -vvvv
 
 provision:
-	ansible-playbook -i inventory main.yml
+	ansible-playbook -vvvv -i inventory main.yml
